@@ -1,0 +1,32 @@
+html, body {
+    background: #000000;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, li {
+    color: #FFFFFF;
+}
+
+a:hover, a:active, a:focus {
+    color: #77C9DB;
+}
+
+.logo {
+    width: 150px;
+    position: fixed;
+    bottom: -15px;
+    left: 10px;
+    z-index: 1;
+}
+
+.code-wrapper {
+    background: #1b1e21;
+}
+
+.code-wrapper > code {
+    color: #77C9DB;
+}
+
+.bg-black {
+    background: #000000;
+    z-index: 0;
+}
