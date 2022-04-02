@@ -90,7 +90,11 @@
                     <div class="p-4 my-4 code-wrapper">
                         <code>{<br>&nbsp;&nbsp;&nbsp;&nbsp;"channels": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"gotify",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"matrix",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"zendesk"<br>&nbsp;&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;&nbsp;"headline": "Nice headline",<br>&nbsp;&nbsp;&nbsp;&nbsp;"message": "This is a test message."<br>}</code>
                     </div>
-                    <p class="pt-3">In this example we want to send the notification to <a href="https://gotify.net/" title="Gotify">Gotify</a> & <a href="https://telegram.org/" title="Telegram">Telegram</a>. Thereby we set a headline and the message. Now echGo reads the files every minute and sends them to the specified channels.</p>
+                    <p class="pt-3">In this example we want to send the notification to <a href="https://gotify.net/" title="Gotify">Gotify</a> & <a href="https://telegram.org/" title="Telegram">Telegram</a>. Thereby we set a headline and the message. If you prefer to use an XML file, you can do that as well. The file can be read in like the others. It must be in the following format:</p>
+                    <div class="p-4 my-4 code-wrapper">
+                        <code>&lt;data&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;channels&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;item&gt;gotify&lt;/item&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;item&gt;discord&lt;/item&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/channels&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;headline&gt;echGo&lt;/headline&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;message&gt;This is a test message from a xml file.&lt;/message&gt;<br>&lt;/data&gt;</code>
+                    </div>
+                    <p class="pt-3">Now echGo reads the files every minute and sends them to the specified channels.</p>
                     <p><strong>This is only an excerpt and the instructions for a quick start. You can find the complete documentation on <a href="https://github.com/echgo/echgo" title="GitHub">GitHub</a>.</strong></p>
                 </div>
             </div>
