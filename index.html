@@ -57,7 +57,7 @@
             <div class="row">
                 <div class="col-md-12 pb-5">
                     <h1>Welcome to echGo</h1>
-                    <p class="pt-3">This small Docker project is the easiest way to send notifications directly via .txt files or .json files to services like: <a href="https://gotify.net/" title="Gotify">Gotify</a>, <a href="https://matrix.org/" title="Matrix">Matrix</a>, <a href="https://telegram.org/" title="Telegram">Telegram</a>, <a href="https://discord.com/" title="Discord">Discord</a>, <a href="https://slack.com/" title="Slack">Slack</a>, <a href="https://trello.com/" title="Trello">Trello</a>, <a href="https://www.zendesk.com/" title="Zendesk">Zendesk</a>, <a href="https://osticket.com/" title="osTicket">osTicket</a>, SMTP (Email) or Webhook.</p>
+                    <p class="pt-3">This small Docker project is the easiest way to send notifications directly via .txt, .json, .yaml or .xml files to services like: <a href="https://gotify.net/" title="Gotify">Gotify</a>, <a href="https://matrix.org/" title="Matrix">Matrix</a>, <a href="https://telegram.org/" title="Telegram">Telegram</a>, <a href="https://discord.com/" title="Discord">Discord</a>, <a href="https://slack.com/" title="Slack">Slack</a>, <a href="https://trello.com/" title="Trello">Trello</a>, <a href="https://www.zendesk.com/" title="Zendesk">Zendesk</a>, <a href="https://osticket.com/" title="osTicket">osTicket</a>, SMTP (Email) or Webhook.</p>
                     <p>On this page you can find a small quick guide to the software. A more detailed tutorial and all the code can be found in our <a href="https://github.com/echgo/echgo" title="GitHub repository">GitHub repository</a>.</p>
                     <h3 class="pt-3">Quick start</h3>
                     <p class="pt-2">Here you can find the instructions on how to set up the Docker container and define the files so that they can be read in correctly.</p>
@@ -78,21 +78,26 @@
                     <p class="pt-2">Now we create a notification to be sent to different channels. You can also enter only one channel. How these notification files are created later is up to you. With a bash script or from another program does not matter.</p>
                     <p>Currently you can store the following channels in the file, if they are configured: <strong>gotify, matrix, telegram, discord, slack, trello, zendesk, osticket, smtp & webhook</strong>.</p>
                     <p>It does not matter what the TXT file is called, which is stored in the directory <strong>/var/lib/echgo/notification</strong> defined by us. The only important thing is that we currently only support .txt files. But there are more file types planned.</p>
+                    <p><strong>Important! With version v1.0.0 we have removed the text error channel and adjusted it to plural channels. This may need to be considered in the scripts. The data types are final now and should not be adjusted anymore!</strong></p>
                     <p>Now let's create a test.txt file in the directory with the following content:</p>
                     <div class="p-4 my-4 code-wrapper">
-                        <code>channel=gotify,telegram<br>headline=Nice headline<br>message=This is a test message!</code>
+                        <code>channels=gotify,telegram<br>headline=Nice headline<br>message=This is a test message!</code>
                     </div>
                     <p class="pt-3">If we now want to send only one webhook, we can do this with the following text file.</p>
                     <div class="p-4 my-4 code-wrapper">
-                        <code>channel=webhook<br>headline=Nice webhook headline!<br>message=This is the best message for the webhook.</code>
+                        <code>channels=webhook<br>headline=Nice webhook headline!<br>message=This is the best message for the webhook.</code>
                     </div>
                     <p class="pt-3">Instead of a TXT file you can now also store a JSON file in the following directory: <strong>/var/lib/echgo/notification</strong>. In this file one or more of the channels can be defined. <strong>Important! The data format has been adapted from version v0.2.0. Please take into account.</strong></p>
                     <div class="p-4 my-4 code-wrapper">
                         <code>{<br>&nbsp;&nbsp;&nbsp;&nbsp;"channels": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"gotify",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"matrix",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"zendesk"<br>&nbsp;&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;&nbsp;"headline": "Nice headline",<br>&nbsp;&nbsp;&nbsp;&nbsp;"message": "This is a test message."<br>}</code>
                     </div>
-                    <p class="pt-3">In this example we want to send the notification to <a href="https://gotify.net/" title="Gotify">Gotify</a> & <a href="https://telegram.org/" title="Telegram">Telegram</a>. Thereby we set a headline and the message. If you prefer to use an XML file, you can do that as well. The file can be read in like the others. It must be in the following format:</p>
+                    <p class="pt-3">In this example we want to send the notification to <a href="https://gotify.net/" title="Gotify">Gotify</a> & <a href="https://telegram.org/" title="Telegram">Telegram</a>. Thereby we set a headline and the message. Thereby we set a headline and the message. You can also use a YAML file. This must then be structured as follows:</p>
                     <div class="p-4 my-4 code-wrapper">
-                        <code>&lt;data&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;channels&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;item&gt;gotify&lt;/item&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;item&gt;discord&lt;/item&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/channels&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;headline&gt;echGo&lt;/headline&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;message&gt;This is a test message from a xml file.&lt;/message&gt;<br>&lt;/data&gt;</code>
+                        <code>channels:<br>&nbsp;&nbsp;&nbsp;&nbsp;- "gotify"<br>&nbsp;&nbsp;&nbsp;&nbsp;- "slack"<br>headline: "echGo"<br>message: "This is a test message from a yaml file."</code>
+                    </div>
+                    <p class="pt-3">If you prefer to use an XML file, you can do that as well. The file can be read in like the others. It must be in the following format:</p>
+                    <div class="p-4 my-4 code-wrapper">
+                        <code>&lt;data&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;channels&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;type&gt;gotify&lt;/type&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;type&gt;discord&lt;/type&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/channels&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;headline&gt;echGo&lt;/headline&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;message&gt;This is a test message from a xml file.&lt;/message&gt;<br>&lt;/data&gt;</code>
                     </div>
                     <p class="pt-3">Now echGo reads the files every minute and sends them to the specified channels.</p>
                     <p><strong>This is only an excerpt and the instructions for a quick start. You can find the complete documentation on <a href="https://github.com/echgo/echgo" title="GitHub">GitHub</a>.</strong></p>
