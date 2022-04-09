@@ -13,9 +13,14 @@ a:hover, a:active, a:focus {
 .logo {
     width: 150px;
     position: fixed;
-    bottom: -15px;
+    bottom: -35px;
     left: 10px;
+    transition: all 0.3s ease-out;
     z-index: 1;
+}
+
+.logo:hover {
+    bottom: -15px;
 }
 
 .code-wrapper {
