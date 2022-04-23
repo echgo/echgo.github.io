@@ -66,14 +66,14 @@
                     <h4 class="pt-3">Create the configuration files</h4>
                     <p class="pt-2">First, we start the Docker container to create the configuration file. For this you can use the following command.</p>
                     <div class="p-4 my-4 code-wrapper">
-                        <code>docker run --name echgo-init -d --rm \<br>&nbsp;&nbsp;&nbsp;&nbsp;-v /etc/echgo/configuration:/go/src/app/files/configuration \<br>&nbsp;&nbsp;&nbsp;&nbsp;echgo/echgo:latest</code>
+                        <code>docker run --name echgo-init -d --rm \<br>&nbsp;&nbsp;&nbsp;&nbsp;-v /etc/echgo/configuration:/app/files/configuration \<br>&nbsp;&nbsp;&nbsp;&nbsp;echgo/echgo:latest</code>
                     </div>
                     <p class="pt-3">If the container was started, then the directory <strong>/etc/echgo/configuration</strong> is created. Here you will find the configuration for the different communication paths. Please fill in and save this as required. You can find an example of the configuration file <a href="https://github.com/echgo/echgo/blob/master/.echgo.yaml" title="Configuration file">here</a>. If you want to adjust the configuration. You do not have to restart the Docker container again. The software reads the configuration once before each run, so it is always up-to-date.</p>
                     <p>The container is stopped automatically and removed.</p>
                     <h4 class="pt-3">Start the service</h4>
                     <p class="pt-2">Now we can start the service directly. To do this, please run the following command once.</p>
                     <div class="p-4 my-4 code-wrapper">
-                        <code>docker run --name echgo -d --restart always \<br>&nbsp;&nbsp;&nbsp;&nbsp;-v /etc/echgo/configuration:/go/src/app/files/configuration \<br>&nbsp;&nbsp;&nbsp;&nbsp;-v /var/lib/echgo/notification:/go/src/app/files/notification \<br>&nbsp;&nbsp;&nbsp;&nbsp;echgo/echgo:latest</code>
+                        <code>docker run --name echgo -d --restart always \<br>&nbsp;&nbsp;&nbsp;&nbsp;-v /etc/echgo/configuration:/app/files/configuration \<br>&nbsp;&nbsp;&nbsp;&nbsp;-v /var/lib/echgo/notification:/app/files/notification \<br>&nbsp;&nbsp;&nbsp;&nbsp;echgo/echgo:latest</code>
                     </div>
                     <p class="pt-3">Now the service should run. With the command we map once the configuration file and the location of the notifications.</p>
                     <h4 class="pt-3">Create notification</h4>
