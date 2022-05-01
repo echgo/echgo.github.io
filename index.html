@@ -68,7 +68,7 @@
                     <div class="p-4 my-4 code-wrapper">
                         <code>docker run --name echgo-init -d --rm \<br>&nbsp;&nbsp;&nbsp;&nbsp;-v /etc/echgo/configuration:/app/files/configuration \<br>&nbsp;&nbsp;&nbsp;&nbsp;echgo/echgo:latest</code>
                     </div>
-                    <p class="pt-3">If the container was started, then the directory <strong>/etc/echgo/configuration</strong> is created. Here you will find the configuration for the different communication paths. Please fill in and save this as required. You can find an example of the configuration file <a href="https://github.com/echgo/echgo/blob/master/.echgo.yaml" title="Configuration file">here</a>. If you want to adjust the configuration. You do not have to restart the Docker container again. The software reads the configuration once before each run, so it is always up-to-date.</p>
+                    <p class="pt-3">If the container was started, then the directory <strong>/etc/echgo/configuration</strong> is created. Here you will find the configuration for the different communication paths. Please fill in and save this as required. If you want to adjust the configuration. You do not have to restart the Docker container again. The software reads the configuration once before each run, so it is always up-to-date.</p>
                     <p>The container is stopped automatically and removed.</p>
                     <h4 class="pt-3">Start the service</h4>
                     <p class="pt-2">Now we can start the service directly. To do this, please run the following command once.</p>
@@ -101,7 +101,7 @@
                     <div class="p-4 my-4 code-wrapper">
                         <code>&lt;data&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;channels&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;type&gt;gotify&lt;/type&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;type&gt;discord&lt;/type&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/channels&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;headline&gt;echGo&lt;/headline&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;message&gt;This is a test message from a xml file.&lt;/message&gt;<br>&lt;/data&gt;</code>
                     </div>
-                    <p class="pt-3">Now echGo reads the files every minute and sends them to the specified channels. It is also possible to read in several files of different types at the same time.</p>
+                    <p class="pt-3">Now echGo reads the files every 15 seconds and sends them to the specified channels. It is also possible to read in several files of different types at the same time.</p>
                     <p><strong>This is only an excerpt and the instructions for a quick start. You can find the complete documentation on <a href="https://github.com/echgo/echgo" title="GitHub">GitHub</a>.</strong></p>
                 </div>
             </div>
