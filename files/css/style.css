@@ -6,8 +6,19 @@ h1, h2, h3, h4, h5, h6, p, a, li {
     color: #FFFFFF;
 }
 
+a {
+   color: #77C9DB;
+}
+
 a:hover, a:active, a:focus {
     color: #77C9DB;
+}
+
+strong {
+    font-weight: normal;
+    color: #77C9DB;
+    background-color: #1b1e21;
+    padding: 3px 5px;
 }
 
 .logo {
