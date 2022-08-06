@@ -59,7 +59,7 @@
             <div class="row">
                 <div class="col-md-12 pb-5">
                     <h1>Welcome to echGo</h1>
-                    <p class="pt-3">This small Docker project is the easiest way to send notifications directly via .txt, .json or .xml files to services like: <a href="https://gotify.net/" title="Gotify">Gotify</a>, <a href="https://pushover.net/" title="Pushover">Pushover</a>, <a href="https://matrix.org/" title="Matrix">Matrix</a>, <a href="https://telegram.org/" title="Telegram">Telegram</a>, <a href="https://discord.com/" title="Discord">Discord</a>, <a href="https://slack.com/" title="Slack">Slack</a>, <a href="https://trello.com/" title="Trello">Trello</a>, <a href="https://www.zendesk.com/" title="Zendesk">Zendesk</a>, <a href="https://osticket.com/" title="osTicket">osTicket</a>, <a href="https://www.twilio.com/" title="twillo">twillo</a> SMTP (Email) or Webhook. <strong>Now with 97,97% smaller compressed docker image.</strong></p>
+                    <p class="pt-3">This small Docker project is the easiest way to send notifications directly via .txt, .json or .xml files to services like: <a href="https://gotify.net/" title="Gotify">Gotify</a>, <a href="https://pushover.net/" title="Pushover">Pushover</a>, <a href="https://matrix.org/" title="Matrix">Matrix</a>, <a href="https://telegram.org/" title="Telegram">Telegram</a>, <a href="https://discord.com/" title="Discord">Discord</a>, <a href="https://slack.com/" title="Slack">Slack</a>, <a href="https://trello.com/" title="Trello">Trello</a>, <a href="https://www.zendesk.com/" title="Zendesk">Zendesk</a>, <a href="https://osticket.com/" title="osTicket">osTicket</a>, <a href="https://www.twilio.com/" title="twillo">twillo</a> SMTP (Email) or Webhook.</p>
                     <p>On this page you can find a small quick guide to the software. A more detailed tutorial and all the code can be found in our <a href="https://github.com/echgo/echgo" title="GitHub repository">GitHub repository</a>.</p>
                     <h3 class="pt-3">Quick start</h3>
                     <p class="pt-2">Here you can find the instructions on how to set up the Docker container and define the files so that they can be read in correctly.</p>
@@ -76,6 +76,19 @@
                         <code>docker run --name echgo -d --restart always \<br>&nbsp;&nbsp;&nbsp;&nbsp;-v /etc/echgo/configuration:/app/files/configuration \<br>&nbsp;&nbsp;&nbsp;&nbsp;-v /var/lib/echgo/notification:/app/files/notification \<br>&nbsp;&nbsp;&nbsp;&nbsp;echgo/echgo:latest</code>
                     </div>
                     <p class="pt-3">Now the service should run. With the command we map once the configuration file and the location of the notifications.</p>
+                    <h4 class="pt-3">Further adjustments</h4>
+                    <h5 class="pt-3">Adjust interval</h5>
+                    <p class="pt-2">If you like to adjust the interval of 15 seconds, you can do this with the following variable <strong>INTERVAL</strong>. This must be of type <strong>integer</strong>, otherwise it will not be taken into account. The whole thing looks like this.</p>
+                    <div class="p-4 my-4 code-wrapper">
+                        <code>docker run --name echgo -d --restart always \<br>&nbsp;&nbsp;&nbsp;&nbsp;-e INTERVAL=5 \<br>&nbsp;&nbsp;&nbsp;&nbsp;-v /etc/echgo/configuration:/app/files/configuration \<br>&nbsp;&nbsp;&nbsp;&nbsp;-v /var/lib/echgo/notification:/app/files/notification \<br>&nbsp;&nbsp;&nbsp;&nbsp;echgo/echgo:latest</code>
+                    </div>
+                    <p class="pt-3">With these settings, the service now reads the notifications every 5 seconds.</p>
+                    <h5 class="pt-3">Use environments</h5>
+                    <p class="pt-2">If you want to use environments instead of the json configuration, you can force this with the variable <strong>USE_ENVIRONMENT</strong>. This value is a <strong>boolean</strong>. This is the way json configuration is taken no longer.</p>
+                    <div class="p-4 my-4 code-wrapper">
+                        <code>docker run --name echgo -d --restart always \<br>&nbsp;&nbsp;&nbsp;&nbsp;-e USE_ENVIRONMENT=true \<br>&nbsp;&nbsp;&nbsp;&nbsp;-v /etc/echgo/configuration:/app/files/configuration \<br>&nbsp;&nbsp;&nbsp;&nbsp;-v /var/lib/echgo/notification:/app/files/notification \<br>&nbsp;&nbsp;&nbsp;&nbsp;echgo/echgo:latest</code>
+                    </div>
+                    <p class="pt-3">Now you can use the following variables for the different services. If a service is running notification file but has no access data stored, the notification will not be executed. A list of all variables can be found <a href="https://github.com/echgo/echgo/wiki/Environment-Variables#channel-variables" title="List of all variables">here</a>.</p>
                     <h4 class="pt-3">Create notification</h4>
                     <p class="pt-2">Now we create a notification to be sent to different channels. You can also enter only one channel. How these notification files are created later is up to you. With a bash script or from another program does not matter.</p>
                     <p>The only important thing is that the file is placed in this folder <strong>/var/lib/echgo/notification</strong>. The name of the file does not matter. It only matters that the file extension and the file format are correct. Currently, we can read the following formats: <strong>.txt, .json & .xml</strong>.</p>
@@ -97,7 +110,7 @@
                         <code>&lt;data&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;channels&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;type&gt;gotify&lt;/type&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;type&gt;discord&lt;/type&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/channels&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;headline&gt;echGo&lt;/headline&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;message&gt;This is a test message from a xml file.&lt;/message&gt;<br>&lt;/data&gt;</code>
                     </div>
                     <p class="pt-3">Now echGo reads the files every 15 seconds and sends them to the specified channels. It is also possible to read in several files of different types at the same time.</p>
-                    <p><strong>This is only an excerpt and the instructions for a quick start. You can find the complete documentation on <a href="https://github.com/echgo/echgo" title="GitHub">GitHub</a>.</strong></p>
+                    <p>This is only an excerpt and the instructions for a quick start. You can find the complete documentation on <a href="https://github.com/echgo/echgo" title="GitHub">GitHub</a>.</p>
                 </div>
             </div>
         </main>
